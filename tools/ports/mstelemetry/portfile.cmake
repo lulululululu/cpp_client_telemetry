@@ -26,7 +26,13 @@ endif()
 # build.sh itself should check if we are building under vcpkg and avoid installing deps that are coming from vcpkg.
 if (UNIX)
 vcpkg_execute_build_process(
-    COMMAND ${SOURCE_PATH}/build.sh noroot
+    COMMAND ${SOURCE_PATH}/build-gtest.sh
+    WORKING_DIRECTORY ${SOURCE_PATH}/
+    LOGNAME build
+)
+
+vcpkg_execute_build_process(
+    COMMAND ${SOURCE_PATH}/build.sh noroot release
     WORKING_DIRECTORY ${SOURCE_PATH}/
     LOGNAME build
 )
